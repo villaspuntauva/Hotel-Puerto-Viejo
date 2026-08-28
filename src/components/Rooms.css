@@ -1,0 +1,133 @@
+.rooms {
+  background: var(--color-cream);
+}
+
+.rooms__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.room-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease;
+}
+
+.room-card:hover {
+  transform: translateY(-6px);
+}
+
+.room-card__image {
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.room-card__image-icon {
+  width: 34px;
+  height: 34px;
+  color: rgba(255, 253, 247, 0.85);
+  position: relative;
+  z-index: 1;
+}
+
+.tone-1 {
+  background: linear-gradient(135deg, #2a7a6f, #163f3b);
+}
+.tone-3 {
+  background: linear-gradient(135deg, #eeb43e, #c98d24);
+}
+.tone-4 {
+  background: linear-gradient(135deg, #4d7ea8, #2c4f6c);
+}
+
+.room-card__body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.room-card__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.room-card__heading h3 {
+  font-size: 19px;
+}
+
+.room-card__price {
+  font-size: 13px;
+  color: var(--color-ink-soft);
+  white-space: nowrap;
+}
+
+.room-card__price span {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--color-terracotta);
+}
+
+.room-card__capacity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-ink-soft);
+}
+
+.room-card__capacity svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.room-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.room-card__tags li {
+  font-size: 12px;
+  background: var(--color-cream);
+  color: var(--color-ink-soft);
+  padding: 5px 11px;
+  border-radius: 999px;
+}
+
+.room-card__link {
+  margin-top: auto;
+  padding-top: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-teal);
+  text-decoration: none;
+}
+
+.room-card__link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 980px) {
+  .rooms__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .rooms__grid {
+    grid-template-columns: 1fr;
+  }
+}

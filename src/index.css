@@ -1,0 +1,226 @@
+:root {
+  --color-cream: #f6efdf;
+  --color-cream-soft: #fbf7ee;
+  --color-sand: #e9dcc0;
+  --color-ink: #2a2318;
+  --color-ink-soft: #5c5140;
+  --color-teal: #1f5c56;
+  --color-teal-dark: #163f3b;
+  --color-terracotta: #d76a3c;
+  --color-terracotta-dark: #b6552c;
+  --color-sun: #eeb43e;
+  --color-white: #fffdf7;
+  --color-border: rgba(42, 35, 24, 0.14);
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Work Sans', 'Segoe UI', sans-serif;
+
+  --shadow-soft: 0 16px 34px -18px rgba(20, 22, 18, 0.45);
+  --radius-md: 14px;
+  --radius-lg: 28px;
+
+  --container-width: 1180px;
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--color-cream-soft);
+  color: var(--color-ink);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 104px 0;
+}
+
+@media (max-width: 720px) {
+  .section {
+    padding: 64px 0;
+  }
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-terracotta);
+  margin: 0 0 14px;
+}
+
+.eyebrow--light {
+  color: var(--color-sun);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  padding: 15px 28px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn--primary {
+  background: var(--color-terracotta);
+  color: var(--color-white);
+}
+
+.btn--primary:hover {
+  background: var(--color-terracotta-dark);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--color-ink);
+  color: var(--color-ink);
+}
+
+.btn--ghost:hover {
+  background: var(--color-ink);
+  color: var(--color-cream-soft);
+}
+
+.btn--light {
+  background: var(--color-cream-soft);
+  color: var(--color-teal-dark);
+  border-color: var(--color-cream-soft);
+}
+
+.btn--light:hover {
+  background: transparent;
+  color: var(--color-cream-soft);
+  border-color: var(--color-cream-soft);
+}
+
+/* Section heading */
+.section-heading {
+  max-width: 640px;
+}
+
+.section-heading--center {
+  margin: 0 auto 56px;
+  text-align: center;
+}
+
+.section-heading--left {
+  margin: 0 0 48px;
+  text-align: left;
+}
+
+.section-heading h2 {
+  font-size: 38px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.section-heading p {
+  margin-top: 16px;
+  color: var(--color-ink-soft);
+  font-size: 17px;
+}
+
+.section-heading--light h2,
+.section-heading--light .eyebrow {
+  color: var(--color-cream-soft);
+}
+
+.section-heading--light p {
+  color: rgba(251, 247, 238, 0.8);
+}
+
+@media (max-width: 720px) {
+  .section-heading h2 {
+    font-size: 30px;
+  }
+}
+
+/* Subtle grain texture used on photo-like blocks */
+.grain {
+  position: relative;
+}
+
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}

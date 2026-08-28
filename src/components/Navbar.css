@@ -1,0 +1,131 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar--solid {
+  background: var(--color-cream-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__logo-img {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.navbar--solid .navbar__logo-img {
+  width: 46px;
+  height: 46px;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navbar__links a {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--color-cream-soft);
+  transition: color 0.3s ease, opacity 0.2s ease;
+}
+
+.navbar--solid .navbar__links a {
+  color: var(--color-ink);
+}
+
+.navbar__links a:hover {
+  opacity: 0.7;
+}
+
+.navbar__cta--mobile {
+  display: none;
+}
+
+.navbar__actions {
+  position: relative;
+  z-index: 101;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navbar__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  color: var(--color-cream-soft);
+  transition: color 0.3s ease;
+}
+
+.navbar--solid .navbar__toggle {
+  color: var(--color-ink);
+}
+
+@media (max-width: 860px) {
+  .navbar__cta {
+    display: none;
+  }
+
+  .navbar__toggle {
+    display: flex;
+  }
+
+  .navbar__links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(320px, 80vw);
+    background: var(--color-cream-soft);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 28px;
+    padding: 32px 40px;
+    box-shadow: var(--shadow-soft);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .navbar__links.is-open {
+    transform: translateX(0);
+  }
+
+  .navbar__links a {
+    color: var(--color-ink) !important;
+    font-size: 20px;
+  }
+
+  .navbar__cta--mobile {
+    display: inline-flex;
+    margin-top: 8px;
+  }
+}
