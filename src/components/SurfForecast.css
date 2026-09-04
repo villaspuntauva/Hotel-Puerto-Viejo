@@ -1,0 +1,31 @@
+.surf-forecast {
+  background: var(--color-cream-soft);
+}
+
+.surf-forecast__widget .widget-container {
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.surf-forecast__widget .footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 0 0;
+  font-size: 13px;
+  color: var(--color-ink-soft);
+}
+
+.surf-forecast__widget .footer .logo {
+  display: inline-flex;
+  color: var(--color-terracotta);
+  flex-shrink: 0;
+}
+
+.surf-forecast__widget .footer a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
