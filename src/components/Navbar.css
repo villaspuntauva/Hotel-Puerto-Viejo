@@ -73,6 +73,42 @@
   gap: 16px;
 }
 
+.lang-toggle {
+  display: flex;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(251, 247, 238, 0.6);
+  transition: border-color 0.3s ease;
+}
+
+.navbar--solid .lang-toggle {
+  border-color: var(--color-border);
+}
+
+.lang-toggle__option {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-cream-soft);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar--solid .lang-toggle__option {
+  color: var(--color-ink-soft);
+}
+
+.lang-toggle__option.is-active,
+.navbar--solid .lang-toggle__option.is-active {
+  background: var(--color-teal);
+  color: var(--color-cream-soft);
+}
+
 .navbar__toggle {
   display: none;
   align-items: center;

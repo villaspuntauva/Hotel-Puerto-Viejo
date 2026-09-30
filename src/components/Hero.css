@@ -4,16 +4,16 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse at 80% 15%, rgba(238, 180, 62, 0.35), transparent 55%),
-    linear-gradient(200deg, #2a7a6f 0%, #1f5c56 38%, #163f3b 68%, #12312e 100%);
+  background: #163f3b var(--hero-photo) center / cover no-repeat;
 }
 
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(18, 15, 10, 0.55), rgba(18, 15, 10, 0.1) 45%);
+  background:
+    linear-gradient(90deg, rgba(18, 15, 10, 0.65), rgba(18, 15, 10, 0.15) 70%),
+    linear-gradient(0deg, rgba(18, 15, 10, 0.55), rgba(18, 15, 10, 0.1) 45%);
   pointer-events: none;
 }
 
