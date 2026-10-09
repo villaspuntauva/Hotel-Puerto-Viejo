@@ -1,5 +1,5 @@
 import Button from './Button.jsx'
-import heroPhoto from '../assets/gallery/HPV FINAL/exterior-8.jpg'
+import heroPhoto from '../assets/gallery/HPV FINAL/exterior-10.jpg'
 import { useCopy } from '../i18n.js'
 import './Hero.css'
 
