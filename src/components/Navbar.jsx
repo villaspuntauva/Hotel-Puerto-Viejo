@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import logo from '../assets/logo.png'
 import Button from './Button.jsx'
 import { IconClose, IconMenu } from './icons.jsx'
-import { LANGUAGES, useCopy, useLanguage } from '../i18n.js'
+import { LANGUAGES, LANGUAGE_PATHS, useCopy, useLanguage } from '../i18n.js'
 import './Navbar.css'
 
 const COPY = {
@@ -42,17 +42,21 @@ function LanguageToggle({ label }) {
   return (
     <div className="lang-toggle" role="group" aria-label={label}>
       {LANGUAGES.map((code) => (
-        <button
+        <a
           key={code}
-          type="button"
+          href={LANGUAGE_PATHS[code]}
+          hrefLang={code}
           lang={code}
           className={`lang-toggle__option ${code === lang ? 'is-active' : ''}`}
-          aria-pressed={code === lang}
+          aria-current={code === lang ? 'page' : undefined}
           aria-label={LANGUAGE_NAMES[code]}
-          onClick={() => setLang(code)}
+          onClick={(event) => {
+            event.preventDefault()
+            setLang(code)
+          }}
         >
           {code.toUpperCase()}
-        </button>
+        </a>
       ))}
     </div>
   )

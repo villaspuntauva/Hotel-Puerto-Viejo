@@ -1,0 +1,79 @@
+name: Build and Prerender
+
+# Vercel's own build (`npm run build`) does not run Playwright, since Chromium
+# has been unreliable to install on Vercel's build image. Instead, this
+# workflow builds the site and runs scripts/prerender.mjs on a GitHub-hosted
+# runner (where `playwright install --with-deps` works reliably), then
+# commits the generated index.html snapshot into prerendered/. The
+# "build" script in package.json merges prerendered/ onto dist/ after
+# `vite build` (see scripts/apply-prerendered.mjs), so Vercel ships the
+# snapshot without ever touching a browser itself.
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prerender
+  cancel-in-progress: false
+
+jobs:
+  prerender:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Build Vite app
+        run: npx vite build
+
+      - name: Prerender pages
+        run: node scripts/prerender.mjs
+
+      - name: Sync prerendered HTML into prerendered/
+        run: rsync -a --delete --prune-empty-dirs --include='*/' --include='index.html' --exclude='*' dist/ prerendered/
+
+      - name: Commit prerendered HTML
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add prerendered/
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: refresh prerendered HTML for crawlers"
+
+          # main can move during the minutes this job takes to install
+          # Chromium and render, so a plain `git push` can be rejected as
+          # non-fast-forward. Rebase onto the latest main and retry.
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt) — rebasing onto latest main and retrying..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $((attempt * 5))
+          done
+
+          echo "Failed to push after multiple attempts." >&2
+          exit 1

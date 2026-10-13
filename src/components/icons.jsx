@@ -97,6 +97,43 @@ export function IconWifi(props) {
   )
 }
 
+export function IconCar(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 16v-3.5l2-5A2 2 0 0 1 7.9 6h8.2a2 2 0 0 1 1.9 1.5l2 5V16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1ZM4 12.5h16M6 17v2M18 17v2" />
+      <circle cx="7.5" cy="14.5" r="0.6" fill="currentColor" />
+      <circle cx="16.5" cy="14.5" r="0.6" fill="currentColor" />
+    </svg>
+  )
+}
+
+export function IconPot(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-6ZM2 10h2M20 10h2M9 7V4.5M12 7V3.5M15 7V4.5" />
+    </svg>
+  )
+}
+
+export function IconBike(props) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="5.5" cy="16.5" r="3.5" />
+      <circle cx="18.5" cy="16.5" r="3.5" />
+      <path d="M5.5 16.5L9 9h7l2.5 7.5M9 9l3.5 7.5L16 9M8 6.5h3M14.5 6.5H17l-1 2.5" />
+    </svg>
+  )
+}
+
+export function IconCompass(props) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M15.5 8.5l-2 5-5 2 2-5 5-2Z" />
+    </svg>
+  )
+}
+
 export function IconStar(props) {
   return (
     <svg {...base} {...props}>

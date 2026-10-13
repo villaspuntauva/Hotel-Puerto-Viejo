@@ -3,8 +3,9 @@ import SectionHeading from './SectionHeading.jsx'
 import { useCopy } from '../i18n.js'
 import './Gallery.css'
 
-// Every photo in the gallery folders is picked up automatically. Name new files
-// `<category>-<number>` (e.g. `kitchen-12.jpg`) and they land in the right filter.
+// Every photo in the gallery folder is picked up automatically. Name new files
+// `hotel-puerto-viejo-<category>-<number>` (e.g. `hotel-puerto-viejo-shared-kitchen-12.jpg`)
+// and they land in the right filter.
 const FILES = import.meta.glob('../assets/gallery/**/*.{jpg,jpeg,png,webp}', {
   eager: true,
   import: 'default',
@@ -12,10 +13,13 @@ const FILES = import.meta.glob('../assets/gallery/**/*.{jpg,jpeg,png,webp}', {
 
 const FILTERS = [
   { id: 'all' },
-  { id: 'common', categories: ['commonarea', 'hallway', 'stairs', 'platform'] },
-  { id: 'rooms', categories: ['rooms', 'mixed-dorm', 'private-room', 'private-room-3ppl'] },
-  { id: 'kitchen', categories: ['kitchen'] },
-  { id: 'bathrooms', categories: ['bathroom'] },
+  { id: 'common', categories: ['common-area', 'hallway', 'stairs', 'garden-platform'] },
+  {
+    id: 'rooms',
+    categories: ['room-walkway', 'mixed-dorm', 'private-room', 'private-triple-room'],
+  },
+  { id: 'kitchen', categories: ['shared-kitchen'] },
+  { id: 'bathrooms', categories: ['shared-bathroom'] },
   { id: 'garden', categories: ['garden'] },
   { id: 'exterior', categories: ['exterior'] },
 ]
@@ -35,17 +39,17 @@ const COPY = {
       exterior: 'Outside',
     },
     captions: {
-      bathroom: 'Shared bathrooms',
-      commonarea: 'Common areas',
+      'shared-bathroom': 'Shared bathrooms',
+      'common-area': 'Common areas',
       exterior: 'Outside the hotel',
       garden: 'The garden',
       hallway: 'Upstairs hallway',
-      kitchen: 'Shared kitchen',
+      'shared-kitchen': 'Shared kitchen',
       'mixed-dorm': 'Mixed dorm',
-      platform: 'Garden platform',
+      'garden-platform': 'Garden platform',
       'private-room': 'Private room',
-      'private-room-3ppl': 'Private room for 3',
-      rooms: 'Room walkways',
+      'private-triple-room': 'Private room for 3',
+      'room-walkway': 'Room walkways',
       stairs: 'Stairs to the upper floor',
       'bar-restaurant': 'The bar & restaurant',
       'front-entrance': 'Front entrance',
@@ -76,17 +80,17 @@ const COPY = {
       exterior: 'Exterior',
     },
     captions: {
-      bathroom: 'Baños compartidos',
-      commonarea: 'Áreas comunes',
+      'shared-bathroom': 'Baños compartidos',
+      'common-area': 'Áreas comunes',
       exterior: 'Exterior del hotel',
       garden: 'El jardín',
       hallway: 'Pasillo del segundo piso',
-      kitchen: 'Cocina compartida',
+      'shared-kitchen': 'Cocina compartida',
       'mixed-dorm': 'Dormitorio mixto',
-      platform: 'Plataforma del jardín',
+      'garden-platform': 'Plataforma del jardín',
       'private-room': 'Habitación privada',
-      'private-room-3ppl': 'Habitación privada para 3',
-      rooms: 'Pasillos de las habitaciones',
+      'private-triple-room': 'Habitación privada para 3',
+      'room-walkway': 'Pasillos de las habitaciones',
       stairs: 'Escaleras al segundo piso',
       'bar-restaurant': 'El bar y restaurante',
       'front-entrance': 'Entrada principal',
@@ -107,18 +111,18 @@ const COPY = {
 
 // Earlier photos named by what they show rather than by category.
 const LEGACY = {
-  'bar-restaurant': 'commonarea',
+  'bar-restaurant': 'common-area',
   'front-entrance': 'exterior',
   'garden-deck': 'garden',
   'garden-path': 'garden',
   'garden-patio': 'garden',
-  'hammock-lounge': 'commonarea',
-  'reception-dining': 'commonarea',
+  'hammock-lounge': 'common-area',
+  'reception-dining': 'common-area',
 }
 
 const PHOTOS = Object.entries(FILES)
   .map(([path, src]) => {
-    const name = path.split('/').pop().replace(/\.\w+$/, '')
+    const name = path.split('/').pop().replace(/\.\w+$/, '').replace(/^hotel-puerto-viejo-/, '')
     if (LEGACY[name]) {
       return { id: name, src, category: LEGACY[name], captionKey: name, order: 0 }
     }

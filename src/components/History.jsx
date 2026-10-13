@@ -1,5 +1,5 @@
 import SectionHeading from './SectionHeading.jsx'
-import entrancePhoto from '../assets/gallery/HPV FINAL/exterior-10.jpg'
+import entrancePhoto from '../assets/gallery/hotel-puerto-viejo-exterior-10.jpg'
 import { useCopy } from '../i18n.js'
 import './History.css'
 

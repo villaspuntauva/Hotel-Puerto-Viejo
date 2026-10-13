@@ -1,8 +1,10 @@
-import { useState } from 'react'
 import SectionHeading from './SectionHeading.jsx'
-import { IconCheck } from './icons.jsx'
-import { useCopy } from '../i18n.js'
+import { IconBike, IconCar, IconCheck, IconCompass, IconLeaf, IconPot, IconWifi } from './icons.jsx'
+import { formatPrice, useCopy } from '../i18n.js'
 import './Services.css'
+
+// Yoga and Pilates are priced in colones; the English page shows dollars.
+const CLASS_PRICE_CRC = 5000
 
 const PRICES = {
   yoga: 'paid',
@@ -40,14 +42,48 @@ const SCHEDULE = [
   { day: 'sat', activities: [{ time: [9, 30], id: 'yoga' }] },
 ]
 
+const HIGHLIGHT_ICONS = {
+  wifi: IconWifi,
+  parking: IconCar,
+  kitchen: IconPot,
+  gardens: IconLeaf,
+  bikes: IconBike,
+  tours: IconCompass,
+}
+
 const COPY = {
   en: {
-    eyebrow: "What's Included",
-    title: 'Services & Facilities',
-    description: 'Everything on offer, straight from the front desk — no surprises at check-in.',
-    tabsLabel: 'Services and facilities categories',
+    eyebrow: 'Amenities & Activities',
+    title: 'Hostel amenities in Puerto Viejo',
+    description:
+      'Free WiFi, free parking and a big shared kitchen, half a block from the Caribbean — plus yoga, Pilates and community nights every week.',
+    highlights: [
+      { id: 'wifi', title: 'Free WiFi', text: 'Free WiFi throughout the hotel, plus internet access for guests.' },
+      { id: 'parking', title: 'Free parking', text: 'Free parking on site for cars, plus bicycle parking.' },
+      { id: 'kitchen', title: 'Shared kitchen', text: 'A large, fully equipped kitchen to cook your own meals.' },
+      { id: 'gardens', title: 'Gardens & common areas', text: 'Tropical gardens and lounges to relax and meet other travellers.' },
+      { id: 'bikes', title: 'Bike rental', text: 'Rent a bicycle and ride to the beaches around Puerto Viejo.' },
+      { id: 'tours', title: 'Tours & transfers', text: 'Book tours and tour transfers at our travel desk.' },
+    ],
+    alsoTitle: 'Also at the hotel',
+    also: [
+      'Daily housekeeping',
+      'Reception open 7:00 AM – 10:00 PM',
+      'Late check-in on request',
+      'Meeting rooms',
+      'Ping pong table',
+      'Book exchange',
+    ],
+    policiesTitle: 'Good to know',
+    policies: [
+      { term: 'Check-in', detail: '3:00 PM – 10:00 PM' },
+      { term: 'Check-out', detail: 'Before 11:00 AM' },
+      { term: 'Payment', detail: 'On arrival — Visa, Maestro, Mastercard, JCB' },
+      { term: 'Taxes', detail: '13% added at arrival' },
+      { term: 'Cancellation', detail: 'Free up to 72 hours before arrival; no-shows are charged in full' },
+    ],
     schedule: {
-      title: 'Weekly Schedule',
+      title: 'Yoga, Pilates & weekly events',
       intro: "Community, movement and good times — open to the public, everyone's welcome.",
       days: { mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu', fri: 'Fri', sat: 'Sat' },
       am: 'AM',
@@ -61,66 +97,45 @@ const COPY = {
         languageExchange: 'Language exchange',
         boardGames: 'Board game night',
       },
-      prices: { paid: '₡5,000', donation: 'By donation' },
-      note: 'Yoga & Pilates ₡5,000 per class · Morning stretch & Belly dance by voluntary contribution · Private lessons available:',
+      prices: { paid: formatPrice(CLASS_PRICE_CRC, 'CRC', 'en'), donation: 'By donation' },
+      note: `Yoga & Pilates ${formatPrice(CLASS_PRICE_CRC, 'CRC', 'en')} per class · Morning stretch & Belly dance by voluntary contribution · Private lessons available:`,
     },
-    tabs: [
-      {
-        id: 'activities',
-        label: 'Activities',
-        schedule: true,
-        sections: [
-          {
-            title: 'Entertainment',
-            items: ['Ping pong table', 'Internet access', 'Book exchange'],
-          },
-        ],
-      },
-      {
-        id: 'amenities',
-        label: 'Amenities',
-        items: [
-          'Free WiFi throughout',
-          'Free parking on site',
-          'Bicycle parking',
-          'Large shared kitchen',
-          'Gardens & common areas',
-          'Meeting rooms',
-        ],
-      },
-      {
-        id: 'services',
-        label: 'Services',
-        items: [
-          'Daily housekeeping',
-          'Tours & travel desk',
-          'Bicycle rental',
-          'Reception open 7:00 AM – 10:00 PM',
-          'Late check-in available on request',
-          'Transfer service for tours',
-        ],
-      },
-      {
-        id: 'good-to-know',
-        label: 'Good to Know',
-        items: [
-          'Check-in: 3:00 PM – 10:00 PM',
-          'Check-out: before 11:00 AM',
-          'Payment on arrival — Visa, Maestro, Mastercard, JCB',
-          '13% tax added at arrival',
-          'Free cancellation up to 72 hours before arrival',
-          'No-show reservations are charged in full',
-        ],
-      },
-    ],
   },
   es: {
-    eyebrow: 'Qué Incluye',
-    title: 'Servicios e Instalaciones',
-    description: 'Todo lo que ofrecemos, directo desde la recepción, sin sorpresas al hacer check-in.',
-    tabsLabel: 'Categorías de servicios e instalaciones',
+    eyebrow: 'Comodidades y Actividades',
+    title: 'Comodidades del hostal en Puerto Viejo',
+    description:
+      'WiFi y parqueo gratis y una gran cocina compartida, a media cuadra del Caribe, además de yoga, Pilates y noches de comunidad cada semana.',
+    highlights: [
+      { id: 'wifi', title: 'WiFi gratis', text: 'WiFi gratis en todo el hotel y acceso a internet para huéspedes.' },
+      { id: 'parking', title: 'Parqueo gratis', text: 'Parqueo gratis en el hotel para carros y para bicicletas.' },
+      { id: 'kitchen', title: 'Cocina compartida', text: 'Una cocina grande y totalmente equipada para cocinar tus comidas.' },
+      { id: 'gardens', title: 'Jardines y áreas comunes', text: 'Jardines tropicales y salas para descansar y conocer a otros viajeros.' },
+      { id: 'bikes', title: 'Alquiler de bicicletas', text: 'Alquila una bicicleta y recorre las playas de Puerto Viejo.' },
+      { id: 'tours', title: 'Tours y transporte', text: 'Reserva tours y transporte a los tours en nuestra recepción.' },
+    ],
+    alsoTitle: 'También en el hotel',
+    also: [
+      'Limpieza diaria',
+      'Recepción abierta de 7:00 a. m. a 10:00 p. m.',
+      'Check-in tardío a solicitud',
+      'Salas de reuniones',
+      'Mesa de ping pong',
+      'Intercambio de libros',
+    ],
+    policiesTitle: 'Bueno saber',
+    policies: [
+      { term: 'Check-in', detail: '3:00 p. m. – 10:00 p. m.' },
+      { term: 'Check-out', detail: 'Antes de las 11:00 a. m.' },
+      { term: 'Pago', detail: 'Al llegar: Visa, Maestro, Mastercard, JCB' },
+      { term: 'Impuestos', detail: 'Se agrega un 13% al llegar' },
+      {
+        term: 'Cancelación',
+        detail: 'Gratis hasta 72 horas antes de la llegada; las reservas no presentadas se cobran en su totalidad',
+      },
+    ],
     schedule: {
-      title: 'Horario Semanal',
+      title: 'Yoga, Pilates y eventos semanales',
       intro: 'Comunidad, movimiento y buenos momentos: abierto al público, ¡todos son bienvenidos!',
       days: { mon: 'Lun', tue: 'Mar', wed: 'Mié', thu: 'Jue', fri: 'Vie', sat: 'Sáb' },
       am: 'a. m.',
@@ -134,58 +149,9 @@ const COPY = {
         languageExchange: 'Intercambio de idiomas',
         boardGames: 'Noche de juegos de mesa',
       },
-      prices: { paid: '₡5.000', donation: 'Contribución voluntaria' },
-      note: 'Yoga y Pilates ₡5.000 por clase · Estiramiento matutino y Danza del vientre con contribución voluntaria · Clases privadas disponibles:',
+      prices: { paid: formatPrice(CLASS_PRICE_CRC, 'CRC', 'es'), donation: 'Contribución voluntaria' },
+      note: `Yoga y Pilates ${formatPrice(CLASS_PRICE_CRC, 'CRC', 'es')} por clase · Estiramiento matutino y Danza del vientre con contribución voluntaria · Clases privadas disponibles:`,
     },
-    tabs: [
-      {
-        id: 'activities',
-        label: 'Actividades',
-        schedule: true,
-        sections: [
-          {
-            title: 'Entretenimiento',
-            items: ['Mesa de ping pong', 'Acceso a internet', 'Intercambio de libros'],
-          },
-        ],
-      },
-      {
-        id: 'amenities',
-        label: 'Comodidades',
-        items: [
-          'WiFi gratis en todo el hotel',
-          'Parqueo gratis en el hotel',
-          'Parqueo para bicicletas',
-          'Cocina compartida grande',
-          'Jardines y áreas comunes',
-          'Salas de reuniones',
-        ],
-      },
-      {
-        id: 'services',
-        label: 'Servicios',
-        items: [
-          'Limpieza diaria',
-          'Tours y asesoría de viajes',
-          'Alquiler de bicicletas',
-          'Recepción abierta de 7:00 a. m. a 10:00 p. m.',
-          'Check-in tardío disponible a solicitud',
-          'Servicio de transporte para tours',
-        ],
-      },
-      {
-        id: 'good-to-know',
-        label: 'Bueno Saber',
-        items: [
-          'Check-in: 3:00 p. m. – 10:00 p. m.',
-          'Check-out: antes de las 11:00 a. m.',
-          'Pago al llegar: Visa, Maestro, Mastercard, JCB',
-          'Se agrega un 13% de impuesto al llegar',
-          'Cancelación gratis hasta 72 horas antes de la llegada',
-          'Las reservas no presentadas se cobran en su totalidad',
-        ],
-      },
-    ],
   },
 }
 
@@ -198,23 +164,10 @@ function formatTime([hour, minute, endHour, endMinute], { am, pm }) {
   return `${clock(hour, minute, showMinutes)}–${clock(endHour, endMinute, showMinutes)} ${period(endHour)}`
 }
 
-function FacilityList({ items }) {
-  return (
-    <ul className="services__grid">
-      {items.map((item) => (
-        <li className="services__item" key={item}>
-          <IconCheck className="services__item-icon" />
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  )
-}
-
 function WeeklySchedule({ t }) {
   return (
-    <div className="schedule">
-      <h3 className="services__section-title">{t.title}</h3>
+    <div className="schedule services__card">
+      <h3 className="services__card-title">{t.title}</h3>
       <p className="schedule__intro">{t.intro}</p>
       <ol className="schedule__days">
         {SCHEDULE.map(({ day, activities }) => (
@@ -241,44 +194,56 @@ function WeeklySchedule({ t }) {
 
 function Services() {
   const t = useCopy(COPY)
-  const [activeId, setActiveId] = useState(t.tabs[0].id)
-  const activeTab = t.tabs.find((tab) => tab.id === activeId)
 
   return (
     <section id="services" className="services section">
       <div className="container">
         <SectionHeading eyebrow={t.eyebrow} title={t.title} description={t.description} />
 
-        <div className="services__tabs" role="tablist" aria-label={t.tabsLabel}>
-          {t.tabs.map((tab) => (
-            <button
-              key={tab.id}
-              type="button"
-              role="tab"
-              aria-selected={tab.id === activeId}
-              className={`services__tab ${tab.id === activeId ? 'is-active' : ''}`}
-              onClick={() => setActiveId(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+        <ul className="services__highlights">
+          {t.highlights.map(({ id, title, text }) => {
+            const Icon = HIGHLIGHT_ICONS[id]
+            return (
+              <li className="services__highlight" key={id}>
+                <span className="services__highlight-icon">
+                  <Icon />
+                </span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </li>
+            )
+          })}
+        </ul>
 
-        {activeTab.sections ? (
-          <div className="services__sections" role="tabpanel">
-            {activeTab.schedule && <WeeklySchedule t={t.schedule} />}
-            {activeTab.sections.map((section) => (
-              <div className="services__section" key={section.title}>
-                <h3 className="services__section-title">{section.title}</h3>
-                <FacilityList items={section.items} />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div role="tabpanel">
-            <FacilityList items={activeTab.items} />
-          </div>
-        )}
+        <div className="services__columns">
+          <WeeklySchedule t={t.schedule} />
+
+          <aside className="services__aside">
+            <div className="services__card">
+              <h3 className="services__card-title">{t.policiesTitle}</h3>
+              <dl className="services__policies">
+                {t.policies.map(({ term, detail }) => (
+                  <div className="services__policy" key={term}>
+                    <dt>{term}</dt>
+                    <dd>{detail}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
+            <div className="services__card">
+              <h3 className="services__card-title">{t.alsoTitle}</h3>
+              <ul className="services__also">
+                {t.also.map((item) => (
+                  <li key={item}>
+                    <IconCheck className="services__also-icon" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
   )
