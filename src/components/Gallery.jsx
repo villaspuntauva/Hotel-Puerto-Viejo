@@ -13,7 +13,10 @@ const FILES = import.meta.glob('../assets/gallery/**/*.{jpg,jpeg,png,webp}', {
 
 const FILTERS = [
   { id: 'all' },
-  { id: 'common', categories: ['common-area', 'hallway', 'stairs', 'garden-platform'] },
+  {
+    id: 'common',
+    categories: ['lounge', 'games-room', 'patio', 'balcony', 'common-area', 'hallway', 'stairs', 'garden-platform'],
+  },
   {
     id: 'rooms',
     categories: ['room-walkway', 'mixed-dorm', 'private-room', 'private-triple-room'],
@@ -51,6 +54,10 @@ const COPY = {
       'private-triple-room': 'Private room for 3',
       'room-walkway': 'Room walkways',
       stairs: 'Stairs to the upper floor',
+      lounge: 'The lounge',
+      'games-room': 'Ping pong & games room',
+      patio: 'The patio',
+      balcony: 'Upstairs terrace',
       'bar-restaurant': 'The bar & restaurant',
       'front-entrance': 'Front entrance',
       'garden-deck': 'Garden deck',
@@ -92,6 +99,10 @@ const COPY = {
       'private-triple-room': 'Habitación privada para 3',
       'room-walkway': 'Pasillos de las habitaciones',
       stairs: 'Escaleras al segundo piso',
+      lounge: 'La sala común',
+      'games-room': 'Sala de ping pong y juegos',
+      patio: 'El patio',
+      balcony: 'Terraza del segundo piso',
       'bar-restaurant': 'El bar y restaurante',
       'front-entrance': 'Entrada principal',
       'garden-deck': 'Terraza del jardín',
@@ -182,7 +193,7 @@ function Gallery() {
   }
 
   return (
-    <section id="gallery" className="gallery section">
+    <section id="gallery" className="gallery section wave-top">
       <div className="container">
         <SectionHeading eyebrow={t.eyebrow} title={t.title} />
 

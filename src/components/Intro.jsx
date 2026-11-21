@@ -1,7 +1,12 @@
 import SectionHeading from './SectionHeading.jsx'
 import { IconPin, IconStar, IconSun, IconWave } from './icons.jsx'
 import { useCopy } from '../i18n.js'
+import gardenPhoto from '../assets/gallery/hotel-puerto-viejo-garden-9.jpg'
+import terracePhoto from '../assets/gallery/hotel-puerto-viejo-balcony-2.jpg'
+import loungePhoto from '../assets/gallery/hotel-puerto-viejo-lounge-2.jpg'
 import './Intro.css'
+
+const PHOTOS = [gardenPhoto, terracePhoto, loungePhoto]
 
 const ICONS = [IconPin, IconWave, IconStar, IconSun]
 
@@ -16,6 +21,7 @@ const COPY = {
       { value: '8.8/10', label: 'on Hostelworld' },
       { value: '1987', label: 'open since' },
     ],
+    photos: ['The jungle garden path', 'Upstairs terrace', 'The lounge'],
   },
   es: {
     eyebrow: 'Bienvenidos',
@@ -27,6 +33,7 @@ const COPY = {
       { value: '8.8/10', label: 'en Hostelworld' },
       { value: '1987', label: 'abierto desde' },
     ],
+    photos: ['El sendero del jardín', 'La terraza del segundo piso', 'La sala común'],
   },
 }
 
@@ -38,6 +45,15 @@ function Intro() {
       <div className="container intro__grid">
         <SectionHeading eyebrow={t.eyebrow} title={t.title} align="left" />
         <p className="intro__text">{t.text}</p>
+      </div>
+
+      <div className="container intro__photos">
+        {PHOTOS.map((src, index) => (
+          <figure className="intro__photo" key={src}>
+            <img src={src} alt={t.photos[index]} loading="lazy" />
+            <figcaption>{t.photos[index]}</figcaption>
+          </figure>
+        ))}
       </div>
 
       <div className="container intro__stats">

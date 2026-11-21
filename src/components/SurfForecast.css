@@ -1,5 +1,6 @@
 .surf-forecast {
-  background: var(--color-cream-soft);
+  --wave-color: var(--color-sea-light);
+  background: var(--color-white);
 }
 
 .surf-forecast__widget .widget-container {
@@ -21,7 +22,7 @@
 
 .surf-forecast__widget .footer .logo {
   display: inline-flex;
-  color: var(--color-terracotta);
+  color: var(--color-sea);
   flex-shrink: 0;
 }
 

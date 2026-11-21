@@ -1,96 +1,96 @@
 .footer {
   background: var(--color-ink);
-  color: rgba(251, 247, 238, 0.75);
-  padding-top: 72px;
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: 64px;
+  border-top: 8px solid var(--color-sun);
 }
 
 .footer__grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr;
   gap: 48px;
-  padding-bottom: 56px;
-  border-bottom: 1px solid rgba(251, 247, 238, 0.12);
+  padding-bottom: 48px;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.15);
 }
 
 .footer__logo-img {
-  width: 84px;
-  height: 84px;
+  width: 88px;
+  height: 88px;
   border-radius: 999px;
+  border: 3px solid var(--color-sun);
   margin-bottom: 16px;
 }
 
 .footer__tagline {
-  font-size: 14px;
-  max-width: 260px;
-  margin-bottom: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  max-width: 280px;
+  margin-bottom: 22px;
 }
 
 .footer__socials {
   display: flex;
-  gap: 12px;
+  gap: 10px;
 }
 
 .footer__socials a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 999px;
-  border: 1px solid rgba(251, 247, 238, 0.25);
-  color: rgba(251, 247, 238, 0.85);
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .footer__socials a:hover {
-  background: var(--color-terracotta);
-  border-color: var(--color-terracotta);
+  background: var(--color-sun);
+  color: var(--color-ink);
 }
 
 .footer__socials svg {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
 }
 
 .footer__column h4 {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-cream-soft);
-  margin-bottom: 20px;
+  font-size: 22px;
+  color: var(--color-sun);
+  margin-bottom: 16px;
 }
 
 .footer__column ul {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .footer__column a {
   text-decoration: none;
-  font-size: 15px;
+  font-size: 16px;
   color: inherit;
 }
 
 .footer__column a:hover {
-  color: var(--color-cream-soft);
+  color: var(--color-white);
+  text-decoration: underline;
 }
 
 .footer__column li {
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .footer__bottom {
-  padding: 24px;
+  padding: 22px 24px;
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 @media (max-width: 720px) {
   .footer__grid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 32px;
   }
 }

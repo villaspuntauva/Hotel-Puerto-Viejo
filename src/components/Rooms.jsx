@@ -203,7 +203,7 @@ function Rooms() {
   const { lang } = useLanguage()
 
   return (
-    <section id="rooms" className="rooms section">
+    <section id="rooms" className="rooms section wave-top">
       <div className="container">
         <SectionHeading eyebrow={t.eyebrow} title={t.title} description={t.description} />
         <div className="rooms__grid">

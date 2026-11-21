@@ -1,5 +1,6 @@
 import Button from './Button.jsx'
 import { useCopy } from '../i18n.js'
+import bookingPhoto from '../assets/gallery/hotel-puerto-viejo-lounge-5.jpg'
 import './BookingCTA.css'
 
 const COPY = {
@@ -23,19 +24,18 @@ function BookingCTA() {
   const t = useCopy(COPY)
 
   return (
-    <section id="booking" className="booking-cta grain">
+    <section id="booking" className="booking-cta wave-top" style={{ '--booking-photo': `url(${bookingPhoto})` }}>
       <div className="container booking-cta__inner">
-        <p className="eyebrow eyebrow--light">{t.eyebrow}</p>
+        <p className="eyebrow">{t.eyebrow}</p>
         <h2>{t.title}</h2>
         <p>{t.text}</p>
         <div className="booking-cta__actions">
-          <Button href="https://wa.me/message/GZKHAOGRVBSNO1" variant="light">
+          <Button href="https://wa.me/message/GZKHAOGRVBSNO1" variant="sun">
             {t.whatsapp}
           </Button>
           <Button
             href="https://www.hostelworld.com/hostels/p/325980/hostel-puerto-viejo/"
-            variant="ghost"
-            className="booking-cta__ghost"
+            variant="light"
           >
             {t.checkAvailability}
           </Button>

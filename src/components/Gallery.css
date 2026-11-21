@@ -1,3 +1,8 @@
+.gallery {
+  --wave-color: var(--color-white);
+  background: var(--color-sand);
+}
+
 .gallery__filters {
   display: flex;
   flex-wrap: wrap;
@@ -8,25 +13,25 @@
 
 .gallery__filter {
   font: inherit;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 800;
   padding: 8px 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(42, 35, 24, 0.15);
-  background: transparent;
-  color: var(--color-ink-soft);
+  border-radius: 10px;
+  border: 2px solid var(--color-ink);
+  background: var(--color-white);
+  color: var(--color-ink);
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
 }
 
 .gallery__filter:hover {
-  background: var(--color-cream);
+  background: var(--color-sun-light);
 }
 
 .gallery__filter.is-active {
-  background: var(--color-teal);
-  border-color: var(--color-teal);
-  color: var(--color-cream-soft);
+  background: var(--color-sea);
+  border-color: var(--color-ink);
+  color: var(--color-white);
 }
 
 /* Masonry columns so portrait and landscape photos keep their shape. */
@@ -68,11 +73,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  color: var(--color-cream-soft);
-  font-size: 13px;
-  font-weight: 500;
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: 800;
   padding: 24px 14px 14px;
-  background: linear-gradient(0deg, rgba(15, 13, 9, 0.7), transparent);
+  background: linear-gradient(0deg, rgba(10, 30, 40, 0.7), transparent);
   pointer-events: none;
 }
 
@@ -87,16 +92,19 @@
   font-weight: 600;
   font-size: 15px;
   padding: 12px 24px;
-  border-radius: 999px;
-  border: 2px solid var(--color-teal);
-  background: transparent;
-  color: var(--color-teal);
+  border-radius: 12px;
+  border: 2px solid var(--color-ink);
+  box-shadow: 4px 4px 0 var(--color-ink);
+  background: var(--color-sun);
+  color: var(--color-ink);
+  font-weight: 800;
   cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .gallery__more-button:hover {
-  background: var(--color-teal);
-  color: var(--color-cream-soft);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--color-ink);
 }
 
 .lightbox {
@@ -110,7 +118,7 @@
 }
 
 .lightbox::backdrop {
-  background: rgba(15, 13, 9, 0.92);
+  background: rgba(10, 30, 40, 0.92);
 }
 
 .lightbox[open] {
@@ -129,7 +137,7 @@
 }
 
 .lightbox__caption {
-  color: var(--color-cream-soft);
+  color: var(--color-white);
   font-size: 14px;
 }
 
@@ -137,8 +145,8 @@
 .lightbox__nav {
   position: fixed;
   border: 0;
-  background: rgba(251, 247, 238, 0.12);
-  color: var(--color-cream-soft);
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-white);
   font-size: 32px;
   line-height: 1;
   width: 48px;
@@ -149,7 +157,7 @@
 
 .lightbox__close:hover,
 .lightbox__nav:hover {
-  background: rgba(251, 247, 238, 0.25);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .lightbox__close {

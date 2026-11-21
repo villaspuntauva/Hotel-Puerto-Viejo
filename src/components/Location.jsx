@@ -40,7 +40,7 @@ function Location() {
   const t = useCopy(COPY)
 
   return (
-    <section id="location" className="location section">
+    <section id="location" className="location section wave-top">
       <div className="container location__grid">
         <div className="location__info">
           <SectionHeading eyebrow={t.eyebrow} title={t.title} align="left" />

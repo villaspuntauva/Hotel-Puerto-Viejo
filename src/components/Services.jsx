@@ -1,7 +1,12 @@
 import SectionHeading from './SectionHeading.jsx'
 import { IconBike, IconCar, IconCheck, IconCompass, IconLeaf, IconPot, IconWifi } from './icons.jsx'
 import { formatPrice, useCopy } from '../i18n.js'
+import loungePhoto from '../assets/gallery/hotel-puerto-viejo-lounge-4.jpg'
+import gamesPhoto from '../assets/gallery/hotel-puerto-viejo-games-room-1.jpg'
+import patioPhoto from '../assets/gallery/hotel-puerto-viejo-patio-1.jpg'
 import './Services.css'
+
+const SPACE_PHOTOS = [loungePhoto, gamesPhoto, patioPhoto]
 
 // Yoga and Pilates are priced in colones; the English page shows dollars.
 const CLASS_PRICE_CRC = 5000
@@ -57,6 +62,11 @@ const COPY = {
     title: 'Hostel amenities in Puerto Viejo',
     description:
       'Free WiFi, free parking and a big shared kitchen, half a block from the Caribbean — plus yoga, Pilates and community nights every week.',
+    spaces: [
+      { title: 'Garden lounge', text: 'Big cushioned sofas under the palms — the best spot to meet people.' },
+      { title: 'Ping pong & games', text: 'A covered games room with a ping pong table and board game nights.' },
+      { title: 'Shady patio', text: 'Long wooden tables for meals, card games and planning tomorrow.' },
+    ],
     highlights: [
       { id: 'wifi', title: 'Free WiFi', text: 'Free WiFi throughout the hotel, plus internet access for guests.' },
       { id: 'parking', title: 'Free parking', text: 'Free parking on site for cars, plus bicycle parking.' },
@@ -106,6 +116,11 @@ const COPY = {
     title: 'Comodidades del hostal en Puerto Viejo',
     description:
       'WiFi y parqueo gratis y una gran cocina compartida, a media cuadra del Caribe, además de yoga, Pilates y noches de comunidad cada semana.',
+    spaces: [
+      { title: 'Sala del jardín', text: 'Sillones grandes bajo las palmeras: el mejor lugar para conocer gente.' },
+      { title: 'Ping pong y juegos', text: 'Una sala techada con mesa de ping pong y noches de juegos de mesa.' },
+      { title: 'Patio con sombra', text: 'Mesas largas de madera para comer, jugar cartas y planear el día.' },
+    ],
     highlights: [
       { id: 'wifi', title: 'WiFi gratis', text: 'WiFi gratis en todo el hotel y acceso a internet para huéspedes.' },
       { id: 'parking', title: 'Parqueo gratis', text: 'Parqueo gratis en el hotel para carros y para bicicletas.' },
@@ -196,9 +211,21 @@ function Services() {
   const t = useCopy(COPY)
 
   return (
-    <section id="services" className="services section">
+    <section id="services" className="services section wave-top">
       <div className="container">
         <SectionHeading eyebrow={t.eyebrow} title={t.title} description={t.description} />
+
+        <ul className="services__spaces">
+          {t.spaces.map(({ title, text }, index) => (
+            <li className="services__space" key={title}>
+              <img src={SPACE_PHOTOS[index]} alt={title} loading="lazy" />
+              <div className="services__space-body">
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
 
         <ul className="services__highlights">
           {t.highlights.map(({ id, title, text }) => {

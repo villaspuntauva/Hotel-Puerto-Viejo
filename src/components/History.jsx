@@ -42,7 +42,7 @@ function History() {
   const t = useCopy(COPY)
 
   return (
-    <section id="story" className="history section">
+    <section id="story" className="history section wave-top">
       <div className="container history__grid">
         <img className="history__image" src={entrancePhoto} alt={t.imageAlt} loading="lazy" />
         <div className="history__content">

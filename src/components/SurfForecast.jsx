@@ -26,7 +26,7 @@ function SurfForecast() {
   const t = useCopy(COPY)
 
   return (
-    <section id="surf-forecast" className="surf-forecast section">
+    <section id="surf-forecast" className="surf-forecast section wave-top">
       <div className="container">
         <SectionHeading
           eyebrow="Salsa Brava"
